@@ -3,6 +3,8 @@
 #include <Adafruit_SSD1306.h>
 #include <Fonts/TomThumb.h> // Подключаем TomThumb для шкалы
 
+#include "icons.h"
+
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64 
 
@@ -131,8 +133,7 @@ void loop() {
 
     // СЕКЦИЯ CPU
     display.drawRoundRect(0, 16, 63, 33, 2, SSD1306_WHITE);
-    display.setCursor(4, 18); 
-    display.print(F("cpu"));
+    display.drawBitmap(4, 18, cpu_icon, 8, 8, SSD1306_WHITE); // Иконка CPU
     // Выравнивание по правому краю рамки (X=59 — крайняя точка для текста)
     // Вычитаем длину числа + знак % (всего символов: length + 1), умноженную на 6 пикселей
     int cpuTextX = 60 - ((getLength(cpuLoad) + 1) * 6);
@@ -143,8 +144,7 @@ void loop() {
 
     // СЕКЦИЯ GPU
     display.drawRoundRect(65, 16, 63, 33, 2, SSD1306_WHITE);
-    display.setCursor(69, 18); 
-    display.print(F("gpu"));
+    display.drawBitmap(68, 18, gpu_icon, 16, 8, SSD1306_WHITE); // Иконка GPU
     // Выравнивание по правому краю рамки (X=124 — крайняя точка для текста)
     int gpuTextX = 125 - ((getLength(gpuLoad) + 1) * 6);
     display.setCursor(gpuTextX, 19);
